@@ -32,6 +32,7 @@ class FlappyGame(GameApp):
 
     def init_game(self):
         self.create_sprites()
+        self.is_started = False
 
     def pre_update(self):
         pass
@@ -40,7 +41,8 @@ class FlappyGame(GameApp):
         pass
 
     def on_key_pressed(self, event):
-        pass
+        self.dot.start()
+        self.dot.jump()
 
 
 if __name__ == "__main__":
