@@ -9,6 +9,7 @@ UPDATE_DELAY = 33
 GRAVITY = 2.5
 STARTING_VELOCITY = -30
 JUMP_VELOCITY = -20
+PILLAR_SPEED = 5
 
 
 class Dot(Sprite):
@@ -31,7 +32,6 @@ class FlappyGame(GameApp):
         self.dot = Dot(self, 'images/dot.gif', CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
         self.pillar_pair = PillarPair(self, 'images/pillar-pair.png', CANVAS_WIDTH, CANVAS_HEIGHT // 2)
         self.elements.append(self.pillar_pair)
-
         self.elements.append(self.dot)
 
     def init_game(self):
@@ -49,7 +49,8 @@ class FlappyGame(GameApp):
         self.dot.jump()
 
 class PillarPair(Sprite):
-    pass
+    def update(self):
+        self.x -= PILLAR_SPEED
 
 
 if __name__ == "__main__":
