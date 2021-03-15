@@ -1,3 +1,4 @@
+from tkinter import *
 import tkinter as tk
 from gamelib import Sprite, GameApp, Text
 
@@ -9,24 +10,25 @@ GRAVITY = 2.5
 STARTING_VELOCITY = -30
 JUMP_VELOCITY = -20
 
+
 class Dot(Sprite):
     def init_element(self):
-        self.vy = STARTING_VELOCITY
         self.is_started = False
         
     def update(self):
-        self.y += self.vy
-        self.vy += GRAVITY
+        if self.is_started:
+            self.y += self.vy
+            self.vy += GRAVITY
     
     def start(self):
         self.is_started = True
 
     def jump(self):
-        self.vu = JUMP_VELOCITY
+        self.vy = JUMP_VELOCITY
 
 class FlappyGame(GameApp):
     def create_sprites(self):
-        self.dot = Dot(self, 'images/dot.png', CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
+        self.dot = Dot(self, 'images/dot.gif', CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
 
         self.elements.append(self.dot)
 
@@ -47,7 +49,7 @@ class FlappyGame(GameApp):
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Monkey Banana Game")
+    root.title("Flappy game")
  
     # do not allow window resizing
     root.resizable(False, False)
